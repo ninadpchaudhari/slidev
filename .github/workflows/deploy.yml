@@ -28,19 +28,23 @@ jobs:
       - name: Setup @antfu/ni
         run: npm i -g @antfu/ni
 
-      - name: Install dependencies and build lab-full-stack
-        working-directory: lab-full-stack
+      - name: Build lab-full-stack
         run: |
+          cd lab-full-stack
           nci
           nr build --base /${{ github.event.repository.name }}/lab-full-stack/
-          mv dist ../_site/lab-full-stack
+          mkdir -p ../_site/lab-full-stack
+          mv dist/* ../_site/lab-full-stack
+          cd ..
 
-    #   - name: Install dependencies and build lab-other
-    #     working-directory: lab-other
+    #   - name: Build lab-other
     #     run: |
+    #       cd lab-other
     #       nci
     #       nr build --base /${{ github.event.repository.name }}/lab-other/
-    #       mv dist ../_site/lab-other
+    #       mkdir -p ../_site/lab-other
+    #       mv dist/* ../_site/lab-other
+    #       cd ..
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
