@@ -22,11 +22,16 @@ layout: default
 - `fetch` API from lab 8 : Managing `GET` and `POST` endpoins.
 - `expressjs` : Creating a simple server.
 - `Google App Engine` : Deploying the server.
+- You have accepted the Github Classroom Assignment and have a repository to work together.
 
+# GitHub Codespaces (optional to speedup development)
+- Create a codespace using `New with options...`
+- Choose a `4 core` machine to save time!
+- Install the `Live Share` plugin so your partner can live edit the code.
 
 <div class="neversink-violet-scheme ns-c-bind-scheme">
 
-### Everything is done _Inside_ the cloned repo.
+### Everything is done _Inside_ this repository.
 
 </div>
 
@@ -72,9 +77,11 @@ We have done this atleast 5 times. Let's do it again.[reference](https://gist.gi
 ### Recall: Follow these steps to create a basic `expressjs` server:
 
 <v-clicks>
+<div class="ns-c-tight">
 
-1. Create a new folder for the server.  
-2. Initialize a new NodeJS project using `npm init -y`.  
+1. Assuming you are on the repository root,
+2. Initialize a new NodeJS project using `npm init -y`.
+   -  This should create a `package.json` file.
 3. Install `express` using `npm install express`.  
 4. Create a new file named `server.js`.  
 5. Add a GET route at `/hello` that returns `Hello World!` as `text` type.  
@@ -82,6 +89,7 @@ We have done this atleast 5 times. Let's do it again.[reference](https://gist.gi
 7. Verify the server is running by opening the URL in the browser.  
 8. Add `.gitignore` file if you haven’t already done so.  
 
+</div>
 </v-clicks>
 
 ---
@@ -216,6 +224,23 @@ Let's create a page that shows the current finances.
 ```
 
 ---
+layout: iframe-left
+
+# the web page source
+url: https://codepen.io/ninadpchaudhari/embed/gbbrdYd?default-tab=result
+---
+
+## Does your table header look like this? 
+
+<Admonition title="Tip" color='purple-light' width="300px">
+Don't worry about the text inside the table.
+
+We will add it in the next slides
+</Admonition>
+
+
+
+---
 layout: two-cols-title
 columns: is-6
 align: l-lt-lt
@@ -227,7 +252,7 @@ align: l-lt-lt
 
 :: left ::
 
-Add the following to begin with. 
+### Adding JavaScript
 
 <v-clicks>
 
@@ -237,7 +262,7 @@ Add the following to begin with.
 
 </v-clicks>
 
-```js {none|2|3|4|all}{at:1} twoslash
+```js {1|2|3|4|all}{at:1} twoslash
 let financeData = {}; // Object to store finance data
 fetchFinanceData(); // Populate the financeData array
 displayFinanceData(); // Display the data in the table
@@ -246,9 +271,10 @@ updateLastUpdatedTime(); // Update the last updated time
 
 :: right ::
 
-Does your front work?
+Create a `script` tag and add these JS lines.
 <v-click>
-Copy the javascript code from my CodePen.
+These are just function definations, 
+copy the function definations from the codepen on next slide.
 </v-click>
 
 
@@ -263,16 +289,18 @@ url: https://codepen.io/ninadpchaudhari/embed/gbbrdYd?default-tab=js
 
 # Page : Current Finances
 
-## I have added function bodies to the earlier code.
-Use the codepen on left to get the full code.
+Use the codepen on left to get the complete HTML/JS.
+## Checkpoint : Your frontend matches
 
-Logic remains the same. 
+<div class="ns-c-tight">
+
+Logic remains the same. We just added function bodies.
 1. Fetch the data from the server
    - Just that now instead of getting the JSON from the server
    - We are populating the `simulatedReturnValue` variable.
 2. Display it in the table.
 3. Then update the last updated time.
-
+</div>
 
 ---
 layout: default
@@ -367,10 +395,6 @@ Don't recall ? Detailed instructions on next slide. Also, [First Slide - JS Fetc
    - Update the `financeData` variable with the `transactions` array from the response.
    - ✅ **Then call** the `displayFinanceData()` function **after** the variable is updated.
 
----
-layout: default
----
-ddd
 
 
 ---
