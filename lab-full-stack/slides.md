@@ -527,6 +527,53 @@ color: dark
 
 ::title::
 
+## Recap : Processing POST endpoints
+
+::left::
+
+Reminder : All comamnds run in the ==ROOT directory== ( where package.json is located )
+
+Install `multer` 
+
+```bash
+npm install multer
+```
+
+To support all types of requests, we need to add a few more lines of code to our server.
+
+```js
+const multer = require('multer');
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(multer().none());
+```
+
+
+::right::
+### API: `POST /api/contact`
+
+To receive data from the frontend, the following code receives POST endpoints
+
+```js
+app.post('/api/contact', (req, res) => {
+  const name = req.body.name;
+  // Process the data as needed
+  if (!name) {
+    return res.status(400).json({ status: 'error', message: 'Name is required' });
+  }
+  res.json({ status: 'success', message: 'Data received successfully' });
+});
+```
+
+---
+layout: top-title-two-cols
+columns: is-6
+align: l-lt-lm
+color: dark
+---
+
+::title::
+
 ## Create a POST API endpoint to receive expense data
 
 
@@ -535,17 +582,15 @@ color: dark
 <span class="text-sm">This is similar to the Quotes API we did in previous lab</span>
 <v-clicks class="ns-c-tight  text-sm">
 
-1. Reuse the **expenses form** from Lab-6 (`add_expense.html`). 
-2. It should collect data such as title, amount, category and the otehr fields.
+1. Create a new JavaScript variable `simulatedData` inside your Express server.
+2. This variable should be an empty array to store the expense data.
+   - You can use the same format as the `transactions` array from the previous slide.
 3. In your Express server, define a `POST` endpoint at `/api/expenses`.
 4. This endpoint should:
-   - Accept JSON data from the frontend form
+   - Accept Form data from the frontend form or Thunderclient.
    - Validate the fields (e.g., title, amount should not be empty)
    - Add the received object to a `simulatedData` array in memory
-5. Refer to your `POST` examples from Lab-7 and lecture demos.  
-   (`fetch(..., { method: 'POST', body: ... })` pattern)
-6. Test by visiting:  
-   `http://localhost:3000/public/add_expense.html`  
+6. Test by using Thunderclient or Postman to the `/api/expenses` endpoint.
    → Submitting the form should store the data to server-side.
 
 </v-clicks>
@@ -577,6 +622,45 @@ The sever responds with
 > Recall, in class we saw how to support many request formats, not just json.
 > Tip: If you're not using string values like `"$10"`, update `"amount"` to a number (`10.00`).
 </v-click>
+
+---
+layout: top-title-two-cols
+columns: is-6
+align: l-lt-lm
+color: dark
+---
+
+::title::
+
+# Adding the add_expenses.html form
+
+::left::
+
+### Create a form to add expenses or use the existing one
+
+<div class="ns-c-tight">
+
+1. Create a new HTML file named `add_expenses.html` in the `public` folder 
+2. Use the Bootstrap starter template to create a form with the following fields:
+   - Title (text input), Category (text input), Amount (text input), Date (date input)
+3. Add a `<script>` tag to the HTML file.
+4. Add a function to handle the form submission.
+5. Use the `fetch()` API to send a `POST` request to the `/api/expenses` endpoint with the form data.
+(`fetch(..., { method: 'POST', body: ... })` pattern)
+6. Display a success message when the data is successfully sent to the server.
+7. Redirect the user to the `finances.html` page after a successful submission.
+8. Test by visiting:  
+   `http://localhost:3000/public/add_expense.html`  
+</div>
+
+::right:: 
+
+## You will have done this in Lab 9! 
+
+We used it to send data to a webhook testing website then. (`fetch(..., { method: 'POST', body: ... })` pattern)
+   
+
+
 
 ---
 layout: intro
