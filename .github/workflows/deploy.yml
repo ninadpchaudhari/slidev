@@ -37,6 +37,14 @@ jobs:
           mv dist/* ../_site/lab-full-stack
           cd ..
 
+      - name: Build lab-sqlite-nodejs
+        run: |
+          cd lab-sqlite-nodejs/slidev
+          nci
+          nr build --base /${{ github.event.repository.name }}/lab-sqlite-nodejs/
+          mkdir -p ../_site/lab-sqlite-nodejs
+          mv dist/* ../_site/lab-sqlite-nodejs
+          cd ..
     #   - name: Build lab-other
     #     run: |
     #       cd lab-other
