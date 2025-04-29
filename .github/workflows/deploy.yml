@@ -39,12 +39,12 @@ jobs:
 
       - name: Build lab-sqlite-nodejs
         run: |
+          ROOT_DIR=$(pwd)
           cd lab-sqlite-nodejs/slidev
           nci
           nr build --base /${{ github.event.repository.name }}/lab-sqlite-nodejs/
-          mkdir -p ../_site/lab-sqlite-nodejs
-          mv dist/* ../_site/lab-sqlite-nodejs
-          cd ..
+          mkdir -p "$ROOT_DIR/_site/lab-sqlite-nodejs"
+          mv dist/* "$ROOT_DIR/_site/lab-sqlite-nodejs"
     #   - name: Build lab-other
     #     run: |
     #       cd lab-other
